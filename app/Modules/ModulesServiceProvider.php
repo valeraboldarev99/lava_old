@@ -9,7 +9,7 @@ class ModulesServiceProvider extends \Illuminate\Support\ServiceProvider {
         $modules = config("module.modules"); 
         
         if($modules) {
-            while (list(,$module) = each($modules)) {
+            foreach ($modules as $module) {
                 //Подключаем роуты для модуля 
                 if(file_exists(__DIR__.'/'.$module.'/Routes/web.php')) {
                     $this->loadRoutesFrom(__DIR__.'/'.$module.'/Routes/web.php');
@@ -22,8 +22,8 @@ class ModulesServiceProvider extends \Illuminate\Support\ServiceProvider {
                 }
 
                 //Подгружаем миграции
-                if(is_dir(__DIR__.'/'.$module.'/Migration')) {
-                    $this->loadMigrationsFrom(__DIR__.'/'.$module.'/Migration');
+                if(is_dir(__DIR__.'/'.$module.'/Database/Migrations')) {
+                    $this->loadMigrationsFrom(__DIR__.'/'.$module.'/Database/Migrations');
                 }
 
                 //Подгружаем переводы

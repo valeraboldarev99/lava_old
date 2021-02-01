@@ -7,6 +7,11 @@
         </div>
     </div>
     <div class="header__right">
+        <div class="header__info">
+            <div class="header__menu">
+                @include('Admins::main')
+            </div>
+        </div>
         <nav class="header__menu">
             <ul class="nav navbar-nav">
                 <li><a href="/test">Test</a></li>
